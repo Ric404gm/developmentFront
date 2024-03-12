@@ -1,0 +1,14 @@
+<h1> Parent </h1>
+<p> Contador {{counter}} </p>
+
+<button (click)="incrementar()">Sumar</button>
+<button (click)="decrementar()">Restar</button>
+
+
+<p>  * {{calculoResiduoMessage}}  * </p>
+
+<app-sub-component 
+(calculoResiduoEvent)="onCalculoResiduo($event)" [valorCalculado]="counter" 
+(extraCalculoEvent)="onExtraCalculate()" [mensajeAnySub]="anyMensaje"
+/>
+

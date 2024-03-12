@@ -1,0 +1,16 @@
+<div class="content-search-compomnent">
+  <form class="contnent-form" [formGroup]="searchForm">
+    <div class="contnent-intput">
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          [formControlName]="'searchData'"
+          [placeholder]="plceHolderInput"
+        />
+      </mat-form-field>
+    </div>
+    <div class="content-button">
+      <button mat-flat-button (click)="searchData()">{{ titleButton }}</button>
+    </div>
+  </form>
+</div>

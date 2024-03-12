@@ -1,0 +1,99 @@
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+// Codigo CSS 30/04/2023
+.content-initiatives {
+  width: 90%;
+  margin: auto;
+  height: 90%;
+
+  .content-buttons-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .content-filters {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+
+    mat-form-field {
+      margin: 0px .5rem;
+    }
+  }
+
+  .content-buttons {
+  }
+
+  .content-grid {
+  }
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
+}
+
+
+
+.content-porcentaje {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  mat-progress-bar {
+    padding-left: .5rem;
+  }
+}
+
+.contnet-buttons-filters {
+  display: flex;
+  width: 45%;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
+}
+
+::ng-deep button {
+  background-color: #05b431;
+  color: #ffffff;
+}

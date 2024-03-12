@@ -1,0 +1,98 @@
+:host {
+	display: block;
+}
+
+.content-progress-bar {
+	display: flex;
+}
+
+.sn-progress-bar-wrapper {
+	margin: auto;
+	margin-top: 20px;
+	height: 1.3rem;
+	background-color: #f0f0f0; //TODO: not in palette
+	border-radius: 6px;
+	position: relative;
+	overflow: hidden;
+
+	.sn-progress-bar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 1.3rem;
+		width: 0%;
+		background-color: var(--sn-color__santander, #ec0000);
+		border-radius: 6px;
+		box-shadow: 5px 0px 15px -2px rgba(#2e2e2e, 0.25); //¿?
+		transition: width ease-out 250ms;
+		overflow: hidden;
+	}
+}
+
+:host([indeterminate]) {
+	.sn-progress-bar-wrapper {
+		.sn-progress-bar {
+			--sn-progress-indeterminate-progress-bar-background: linear-gradient(
+				to right,
+				rgba(236, 0, 0, 0.25) 10%,
+				var(--sn-color__santander, #ec0000)
+			);
+			--sn-progress-indeterminate-progress-bar-background-reverse: linear-gradient(
+				to left,
+				rgba(236, 0, 0, 0.25) 10%,
+				var(--sn-color__santander, #ec0000)
+			);
+			width: 120%;
+			background-color: transparent !important;
+			background-image: var(
+				--sn-progress-indeterminate-progress-bar-background
+			);
+			opacity: 0.75;
+			will-change: transform;
+			animation: sn-progress-slide 1.75s infinite
+					cubic-bezier(0.645, 0.045, 0.355, 1),
+				sn-progress-scale 1.75s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+		}
+	}
+}
+@keyframes sn-progress-slide {
+	0% {
+		transform-origin: -5% 0%;
+	}
+	50% {
+		transform-origin: 100% 0%;
+		background-image: var(--sn-progress-indeterminate-progress-bar-background);
+	}
+	50.1% {
+		transform-origin: 100% 0%;
+		background-image: var(
+			--sn-progress-indeterminate-progress-bar-background-reverse
+		);
+	}
+	100% {
+		transform-origin: 0% -5%;
+		background-image: var(
+			--sn-progress-indeterminate-progress-bar-background-reverse
+		);
+	}
+} // TODO, review animation
+@keyframes sn-progress-scale {
+	0% {
+		transform: scaleX(0.015);
+	}
+	25% {
+		transform: scaleX(0.4);
+	}
+	50% {
+		transform: scaleX(0.015);
+	}
+	50.1% {
+		transform: scaleX(0.015);
+	}
+	75% {
+		transform: scaleX(0.4);
+	}
+	100% {
+		transform: scaleX(0.015);
+	}
+}

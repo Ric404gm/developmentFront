@@ -1,0 +1,14 @@
+.content-search-compomnent {
+  .contnent-form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .content-button {
+      margin-left: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

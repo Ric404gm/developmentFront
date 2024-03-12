@@ -1,0 +1,66 @@
+<coppel-title [titleComponent]="data.name"></coppel-title>
+<div class="demo-button-container">
+<!--   <button
+    mat-raised-button
+    (click)="viewData()"
+    *ngIf="data.typeOperation === 'update' || data.typeOperation === 'delete'"
+    class="demo-button"
+  >
+    {{ messageButton }}
+  </button> -->
+</div>
+<div class="content-delete-component" *ngIf="data.showDetail">
+  <mat-dialog-content class="mat-typography">
+    <div>
+      <p>
+        <strong>Titulo Iniciativa: </strong>
+        {{ data.asignation.tituloIniciativa }}
+      </p>
+      <!-- <pre> {{ data.userSelected | json }} </pre> -->
+      <h2>Usuarios Seleccionados.</h2>
+      <div *ngFor="let user of data.userSelected">
+        <p>{{ user.nombre }}</p>
+      </div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Comentarios</mat-label>
+        <textarea
+          matInput
+          placeholder="Comentarios"
+          [(ngModel)]="commentToAction"
+          (keyup)="commentData($event)"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" *ngIf="data.showDetail">
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      (click)="operationType(data.typeOperation)"
+    >
+      {{ data.buttonName }}
+    </button>
+  </mat-dialog-actions>
+</div>
+<div
+  class="content-delete-component"
+  *ngIf="!data.showDetail && bitacoraData.length !== 0"
+>
+  <mat-dialog-content class="mat-typography">
+    <div *ngFor="let comentario of bitacoraData">
+      <p><span>Acción: </span> {{ comentario.tipoaccion }}</p>
+      <p><span>Fecha de modificación: </span> {{ comentario.fecha | date }}</p>
+      <p><span>Registro Editado: </span> {{ comentario.referenciavalor }}</p>
+      <p><span>Comentario: </span> {{ comentario.comentario }}</p>
+    </div>
+  </mat-dialog-content>
+</div>
+<div
+  class="content-delete-component"
+  *ngIf="!data.showDetail && bitacoraData.length === 0"
+>
+  <mat-dialog-content class="mat-typography">
+    <h1>No existen registros por mostrar</h1>
+  </mat-dialog-content>
+</div>

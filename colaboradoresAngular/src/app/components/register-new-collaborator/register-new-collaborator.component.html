@@ -1,0 +1,299 @@
+<div class="content-register-form-component">
+  <coppel-title [titleComponent]="data.name"></coppel-title>
+  <mat-dialog-content class="mat-typography"> </mat-dialog-content>
+
+  <div class="content-form">
+    <form class="form-data-content" [formGroup]="collaboratorForm">
+      <div class="contnet-input" *ngFor="let formInput of listDataForms">
+        <mat-form-field class="example-full-width">
+          <mat-label> {{ formInput.label }} </mat-label>
+          <input
+            matInput
+            [type]="formInput.typeInput"
+            [formControlName]="formInput.controlName"
+            [placeholder]="formInput.placeHolder"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="contnet-input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo electronico</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Correo electronico"
+          />
+          <div
+            *ngIf="
+              collaboratorForm.controls['email'].invalid &&
+              (collaboratorForm.controls['email'].dirty ||
+                collaboratorForm.controls['email'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="collaboratorForm.controls['email'].invalid">
+              El formato no es valido.
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ip F5/VPN</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="vpnIpF5"
+            placeholder="Ip F5/VPN"
+          />
+          <div
+            *ngIf="
+              collaboratorForm.controls['vpnIpF5'].invalid &&
+              (collaboratorForm.controls['vpnIpF5'].dirty ||
+                collaboratorForm.controls['vpnIpF5'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="collaboratorForm.controls['vpnIpF5'].invalid">
+              El formato no es valido.
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ip de banco</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="bankIp"
+            placeholder="Ip de banco"
+          />
+          <div
+            *ngIf="
+              collaboratorForm.controls['bankIp'].invalid &&
+              (collaboratorForm.controls['bankIp'].dirty ||
+                collaboratorForm.controls['bankIp'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="collaboratorForm.controls['bankIp'].invalid">
+              El formato no es valido.
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de colaborador</mat-label>
+          <mat-select
+            [formControlName]="'collaboratorType'"
+            [(ngModel)]="currentData.tipoColaborador"
+          >
+            <mat-option
+              [value]="type.label"
+              *ngFor="let type of collaboratorType"
+              >{{ type.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Especialidad</mat-label>
+          <mat-select
+            [formControlName]="'specialty'"
+            [(ngModel)]="currentData.idEspecialidad"
+          >
+            <mat-option
+              [value]="especialidad.id"
+              *ngFor="let especialidad of catalogEspecialidades"
+              >{{ especialidad.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Empresa a la que pertenece</mat-label>
+          <mat-select
+            [(ngModel)]="currentData.idEmpresa"
+            [formControlName]="'belongsCompany'"
+          >
+            <mat-option
+              [value]="empresa.id"
+              *ngFor="let empresa of catalogEmpresas"
+              >{{ empresa.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Centro asignado</mat-label>
+          <mat-select
+            [formControlName]="'assignedCenter'"
+            [(ngModel)]="currentData.idCentro"
+          >
+            <mat-option
+              [value]="centro.id"
+              *ngFor="let centro of catalogCentros"
+              >{{ centro.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Gerencia SR</mat-label>
+          <mat-select
+            [formControlName]="'seniorMangement'"
+            [(ngModel)]="currentData.idGerenciaSR"
+          >
+            <mat-option
+              [value]="gerencia.id"
+              *ngFor="let gerencia of catalogGerenciasSr"
+              >{{ gerencia.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Lider asignado</mat-label>
+          <mat-select
+            [formControlName]="'assignedLeader'"
+            [(ngModel)]="currentData.idLider"
+          >
+            <mat-option
+              [value]="lider.id"
+              *ngFor="let lider of catalogResponsables"
+              >{{ lider.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Ubicación del colaborador</mat-label>
+          <mat-select
+            [formControlName]="'collaboratorLocation'"
+            [(ngModel)]="currentData.idUbicacion"
+          >
+            <mat-option
+              [value]="ubicacion.id"
+              *ngFor="let ubicacion of catalogUbicaciones"
+              >{{ ubicacion.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Esquema de trabajo del colaborador</mat-label>
+          <mat-select
+            [formControlName]="'collaboratorWorkSchemas'"
+            [(ngModel)]="currentData.idEsquema"
+          >
+            <mat-option
+              [value]="esquema.id"
+              *ngFor="let esquema of catalogEsquemas"
+              >{{ esquema.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Puesto</mat-label>
+          <mat-select
+            [formControlName]="'position'"
+            [(ngModel)]="currentData.idPuesto"
+          >
+            <mat-option
+              [value]="puesto.id"
+              *ngFor="let puesto of catalogPuestos"
+              >{{ puesto.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Equipos</mat-label>
+          <mat-select
+            [formControlName]="'teams'"
+            [(ngModel)]="currentData.idEquipo"
+          >
+            <mat-option [value]="team.id" *ngFor="let team of catalogTeams"
+              >{{ team.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="contnet-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Skills</mat-label>
+          <mat-select
+            [formControlName]="'skills'"
+            multiple
+            [(ngModel)]="skilsData"
+          >
+            <mat-option
+              [value]="skill.id"
+              *ngFor="let skill of catalogSkills"
+              >{{ skill.titulo }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="contnet-input">
+        <button
+          *ngIf="!data.isEdit"
+          (click)="newCollaborator($event)"
+          mat-flat-button
+          [disabled]="!collaboratorForm.valid"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <div *ngIf="data.isEdit">
+    <button mat-button mat-dialog-close (click)="operationAbort()">
+      Cancelar
+    </button>
+    <button mat-button cdkFocusInitial (click)="confirmOperation('bitacora')">
+      Mostrar Bitacora
+    </button>
+    <button
+      mat-button
+      cdkFocusInitial
+      *ngIf="!isUpdate"
+      (click)="confirmOperation('edit')"
+    >
+      Hablitar Formulario
+    </button>
+    <button
+      mat-button
+      *ngIf="isUpdate"
+      cdkFocusInitial
+      (click)="confirmOperation('update')"
+    >
+      Guardar
+    </button>
+    <button
+      mat-button
+      mat-raised-button
+      color="warn"
+      (click)="confirmOperation('delete')"
+    >
+      Eliminar
+    </button>
+  </div>
+</mat-dialog-actions>

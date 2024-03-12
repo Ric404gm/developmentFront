@@ -1,0 +1,22 @@
+<!--  Code without Loading
+    <p> Se mostrará el detalle del producto {{idDetailProduct}}</p>
+    <h1> Nombre {{ productMock?.name}}</h1>
+    <h2 *ngIf="productMock!.price <=40 " style="color:  red;" >  Oferta!   </h2>
+    <h2> Precio {{ productMock?.price | currency :'MXN'}}</h2>
+    <h3> Nombre {{ productMock?.stock }}</h3>
+    <p>  {{ productMock?.detalle | uppercase}}</p>
+-->
+
+<!---Contiene un bbloque de codigo en especial , similar a Div -->
+<ng-container  *ngIf="!loading"> 
+    
+    <p> Se mostrará el detalle del producto {{idDetailProduct}}</p>
+    <h1> Nombre {{ productMock?.name}}</h1>
+    <h2 *ngIf="productMock!.price <=40 " style="color:  red;" >  Oferta!   </h2>
+    <h2 [ngStyle]="{'color': offerColorStyle}"> Precio {{ productMock?.price | currency :'MXN'}}</h2>
+    <h3> Nombre {{ productMock?.stock }}</h3>
+    <p>  {{ productMock?.detalle | uppercase}}</p>
+
+</ng-container>
+
+<ng-container *ngIf="loading"><i style="color: mediumseagreen;">Cargando Detalle . . .</i></ng-container>

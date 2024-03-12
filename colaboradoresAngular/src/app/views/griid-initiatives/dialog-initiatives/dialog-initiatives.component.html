@@ -1,0 +1,229 @@
+<div class="contnet-form-initiatives">
+  <coppel-title
+    [titleComponent]="
+      data.initiativeData === null ? 'Agregar Iniciativa' : 'Editar Iniciativa'
+    "
+  ></coppel-title>
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Folio</mat-label>
+        <input
+          name="inputfolio"
+          [(ngModel)]="currentInitiativeModel.folio"
+          required="true"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre Iniciativa</mat-label>
+        <input
+          name="inputTituloIniciativa"
+          [(ngModel)]="currentInitiativeModel.tituloIniciativa"
+          required="true"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <input
+          name="inputDescripcion"
+          [(ngModel)]="currentInitiativeModel.descripcion"
+          required="true"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Numero de integrantes</mat-label>
+        <input
+          name="inputNumIntegrantes"
+          [(ngModel)]="currentInitiativeModel.numIntegrantes"
+          required="true"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Inicio</mat-label>
+        <input
+          matInput
+          [(ngModel)]="startDate"
+          name="pickerFechaInicio"
+          [matDatepickerFilter]="myFilter"
+          [matDatepicker]="pickerFechaInicio"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerFechaInicio"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerFechaInicio></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Fin</mat-label>
+        <input
+          matInput
+          [(ngModel)]="endDate"
+          name="pickerFechaFin"
+          [min]="endDate"
+          [matDatepickerFilter]="myFilter"
+          [matDatepicker]="pickerFechaFin"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerFechaFin"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerFechaFin></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Porcentaje Avance</mat-label>
+        <input
+          name="inputPorcentaje"
+          [(ngModel)]="currentInitiativeModel.porcentajeAvance"
+          required="true"
+          matInput
+          numbersOnly
+          maxlength="3"
+          (keyup)="checkData($event)"
+        />
+
+        <div *ngIf="showErrorPorcentaje">
+          <p>El valor no puede ser mayor a 100</p>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Estatus</mat-label>
+        <mat-select
+          [(ngModel)]="currentInitiativeModel.idEstatus"
+          (selectionChange)="onChangeTipoProyecto($event)"
+          name="selectCatalogIdEstatus"
+        >
+          <mat-option
+            *ngFor="let itemCatalogTipoEstatus of data.catalogTipoEstatus"
+            [value]="itemCatalogTipoEstatus.id"
+          >
+            {{ itemCatalogTipoEstatus.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Solicitante</mat-label>
+        <mat-select
+          [(ngModel)]="currentInitiativeModel.idSolicitante"
+          (selectionChange)="onChangeTipoProyecto($event)"
+          name="selectCatalogIdSolicitante"
+        >
+          <mat-option
+            *ngFor="let itemCatalogSolicitantes of data.catalogSolicitantes"
+            [value]="itemCatalogSolicitantes.id"
+          >
+            {{ itemCatalogSolicitantes.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Tipo Iniciativa </mat-label>
+        <mat-select
+          [(ngModel)]="currentInitiativeModel.idTipoProyecto"
+          (selectionChange)="onChangeTipoProyecto($event)"
+          name="selectCatalogTipoProyecto"
+        >
+          <mat-option
+            *ngFor="let itemCatalogTipoProyecto of data.catalogoTipoProyecto"
+            [value]="itemCatalogTipoProyecto.id"
+          >
+            {{ itemCatalogTipoProyecto.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Modelo operativo</mat-label>
+        <mat-select
+          [(ngModel)]="currentInitiativeModel.idModOp"
+          (selectionChange)="onChangeTipoProyecto($event)"
+          name="selectCatalogModoOperativo"
+        >
+          <mat-option
+            *ngFor="
+              let itemCatalogModoOperativo of data.catalogosModelosOperativos
+            "
+            [value]="itemCatalogModoOperativo.id"
+          >
+            {{ itemCatalogModoOperativo.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Dirección de atencion</mat-label>
+        <mat-select
+          [(ngModel)]="currentInitiativeModel.idDireccion"
+          (selectionChange)="onChangeTipoProyecto($event)"
+          name="selectCatalogDirecciones"
+        >
+          <mat-option
+            *ngFor="
+              let itemCatalogcatalogDirecciones of data.catalogDirecciones
+            "
+            [value]="itemCatalogcatalogDirecciones.id"
+          >
+            {{ itemCatalogcatalogDirecciones.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Folio Iniciativa Estategica</mat-label>
+        <input
+          name="inputFolioIniciativaAsociada"
+          [(ngModel)]="currentInitiativeModel.folioIniciativaAsociada"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre Iniciativa Estategica</mat-label>
+        <input
+          name="inputNombreIniciativaAsociada"
+          [(ngModel)]="currentInitiativeModel.iniciativaEstrategica"
+          matInput
+        />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button
+      *ngIf="data.initiativeData"
+      (click)="onDelete(currentInitiativeModel.idIniciativa)"
+      mat-button
+      mat-raised-button
+      color="warn"
+    >
+      Eliminar
+    </button>
+    <button
+      mat-button
+      mat-raised-button
+      *ngIf="data.initiativeData !== null"
+      (click)="showBitacora()"
+      color="accent"
+    >
+      Mostrar Bitácora
+    </button>
+    <button mat-button mat-raised-button (click)="onSave()" color="accent">
+      Guardar
+    </button>
+    <!-- <button mat-button [mat-dialog-close]="true" mat-raised-button color="success" cdkFocusInitial (click)="onSave()">Guardar</button> -->
+  </mat-dialog-actions>
+</div>

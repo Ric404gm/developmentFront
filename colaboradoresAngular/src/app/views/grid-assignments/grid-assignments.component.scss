@@ -1,0 +1,52 @@
+.content-collaborators {
+  width: 90%;
+  margin: auto;
+  height: 90%;
+
+  .content-buttons-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .content-buttons {
+  }
+
+  .content-grid {
+  }
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.content-filters-data {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.content-porcentaje {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  mat-progress-bar {
+    padding-left: 0.5rem;
+  }
+}

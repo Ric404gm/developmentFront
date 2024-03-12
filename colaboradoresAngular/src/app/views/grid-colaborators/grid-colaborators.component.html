@@ -1,0 +1,66 @@
+<div class="content-collaborators">
+  <div class="content-buttons-search">
+    <div>
+      <button mat-flat-button (click)="newCollaborator()">agregar</button>
+    </div>
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        [(ngModel)]="controlInput"
+        (keyup)="applyFilter($event)"
+        placeholder="busqueda general"
+        #input
+      />
+    </mat-form-field>
+  </div>
+  <div class="content-buttons">
+    <coppel-title [titleComponent]="title"></coppel-title>
+  </div>
+  <div class="content-grid">
+    <table mat-table [dataSource]="dataSourceCollaborators" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="idColaborador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+        <td mat-cell *matCellDef="let element">{{ element.idColaborador }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="numColaborador">
+        <th mat-header-cell *matHeaderCellDef>Número de Empleado</th>
+        <td mat-cell *matCellDef="let element">{{ element.numColaborador }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="tituloCentro">
+        <th mat-header-cell *matHeaderCellDef>Centro al que pertenece</th>
+        <td mat-cell *matCellDef="let element">{{ element.tituloCentro }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="skills">
+        <th mat-header-cell *matHeaderCellDef>Skills</th>
+        <td mat-cell *matCellDef="let element">{{ element.skills }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsCollaborators"></tr>
+      <tr
+        mat-row
+        (click)="editData(row)"
+        [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumnsCollaborators"
+      ></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 25, 100]"
+      aria-label=" paginas "
+    ></mat-paginator>
+  </div>
+</div>

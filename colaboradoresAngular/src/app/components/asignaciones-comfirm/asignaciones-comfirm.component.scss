@@ -1,0 +1,14 @@
+.content-delete-component {
+  width: max-content;
+  height: 60%;
+  .mat-typography {
+    .content-data-deleted {
+      width: 50rem;
+    }
+  }
+}
+
+
+::ng-deep textarea {
+  color: #000000 !important;
+}

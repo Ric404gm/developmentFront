@@ -1,0 +1,69 @@
+<coppel-title [titleComponent]="data.name"></coppel-title>
+<div class="content-delete-component">
+  <mat-dialog-content class="mat-typography">
+    <!-- <div class="demo-button-container">
+      <button mat-raised-button (click)="viewData()" *ngIf="data.typeOperation === 'update' || data.typeOperation === 'delete'" class="demo-button">
+        {{ messageButton }}
+      </button>
+    </div> -->
+    <!-- <h2 mat-dialog-title>{{ data.name }}</h2> -->
+    <div class="content-data-deleted" *ngIf="!data.showDetail">
+      <P><strong>Usuario: </strong> {{ data.dataSelected.nombre }} </P>
+      <p>
+        <strong>No. empleado: </strong> {{ data.dataSelected.numColaborador }}
+      </p>
+      <p><strong>Puesto: </strong> {{ data.dataSelected.tituloPuesto }}</p>
+      <p>
+        <strong>Tipo colaborador: </strong>
+        {{ data.dataSelected.tipoColaborador }}
+      </p>
+      <p>
+        <strong>Tipo Empresa: </strong> {{ data.dataSelected.tituloEmpresa }}
+      </p>
+      <p><strong>Lider: </strong> {{ data.dataSelected.lider }}</p>
+      <p>
+        <strong>Ubicación colaborador: </strong>
+        {{ data.dataSelected.tituloUbicacion }}
+      </p>
+      <p>
+        <strong>Gerencia Sr: </strong> {{ data.dataSelected.tituloGenrenciaSR }}
+      </p>
+      <p>
+        <strong>Especialidad: </strong>
+        {{ data.dataSelected.tituloEspecialidad }}
+      </p>
+      <p><strong>Skills: </strong> {{ data.dataSelected.skills }}</p>
+      <mat-form-field style="width: 100%">
+        <mat-label>Comentarios</mat-label>
+        <textarea
+          matInput
+          placeholder="Comentarios"
+          (keyup)="commentData($event)"
+          [(ngModel)]="commentToAction"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div class="content-data-deleted" *ngIf="data.showDetail && bitacoraData.length !== 0" >
+      <div *ngFor="let comentario of bitacoraData">
+        <p><span>Acción: </span> {{ comentario.tipoaccion }} </p>
+        <p><span>Fecha de modificación: </span> {{ comentario.fecha | date }} </p>
+        <p><span>Registro Editado: </span> {{ comentario.referenciavalor }} </p>
+        <p><span>Comentario: </span> {{ comentario.comentario }} </p>
+      </div>
+    </div>
+    <div class="content-data-deleted" *ngIf="data.showDetail && bitacoraData.length === 0" >
+      <h1> No existen registros por mostrar </h1>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" *ngIf="!data.showDetail">
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      (click)="deleteCollanorator(data.typeOperation)"
+      [disabled]="disbleButton"
+    >
+      {{ data.buttonName }}
+    </button>
+  </mat-dialog-actions>
+</div>

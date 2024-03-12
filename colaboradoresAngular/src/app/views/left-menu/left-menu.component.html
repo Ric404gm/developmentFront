@@ -1,0 +1,47 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      class="contnet-navbar"
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <!-- <img src="../../../assets/images/coppel.png" alt=""> -->
+      <div class="container-content-image">
+        <div class="container-image"></div>
+      </div>
+
+      <mat-nav-list *ngFor="let nav of fillerNav">
+        <a mat-list-item (click)="selectedItem(nav.tab)">{{ nav.label }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name">Gestión de colaboradores</h1>
+      </mat-toolbar>
+      <div class="content-view">
+        <!-- <p *ngFor="let content of fillerContent">{{ content }}</p> -->
+        <div class="content-components">
+          <!-- <pre> {{ selectItem }} </pre> -->
+          <coppel-grid-colaborators
+            *ngIf="selectItem === 'colaboradores'"
+          ></coppel-grid-colaborators>
+          <coppel-grid-assignments
+            *ngIf="selectItem === 'asignaciones'"
+          ></coppel-grid-assignments>
+          <coppel-griid-initiatives
+          *ngIf="selectItem === 'iniciativas'"
+        ></coppel-griid-initiatives>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

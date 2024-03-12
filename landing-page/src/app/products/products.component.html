@@ -1,0 +1,51 @@
+<p>Productos </p>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th  scope="col">Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let itemProduct of  productosDataList" >
+        <th scope="row">{{itemProduct.id}}</th>
+        <td>{{itemProduct.name}}</td>
+        <td [ngClass]="{'acentuar': itemProduct.price <=40 }"> {{itemProduct.price  | currency : 'MXN'}}</td>
+        <td>{{itemProduct.stock}}</td>
+        
+        <button type="button" 
+        class="btn btn-info"
+         [routerLink]="['/products',itemProduct.id] "   > 
+          Detalle 
+        </button>
+      </tr>
+       <!-- <tr>
+        <th scope="row">1</th>
+        <td>Ariel</td>
+        <td> {{ 10 | currency}}</td>
+        <td>2</td>
+        <button type="button" class="btn btn-info" [routerLink]="['/products','Ariel' ,'10'] "   > 
+          Detalle </button>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Pino</td>
+        <td> {{ 20 | currency}}</td>
+        <td>4</td>
+        
+        <button type="button" class="btn btn-info" [routerLink]="['/products','Pino','20']"  > Detalle </button>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td > Foca </td>
+        <td>  {{80 | currency}} </td>
+        <td>10</td>
+        
+        <button type="button" class="btn btn-info" [routerLink]="['/products','Foca' , '80']"> Detalle </button>
+      </tr> -->
+    </tbody>
+  </table>

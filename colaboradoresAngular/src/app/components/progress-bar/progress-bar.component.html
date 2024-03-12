@@ -1,0 +1,13 @@
+<div class="content-progress-bar">
+	<div>
+		{{ percentage }}%
+	</div>
+	<div class="sn-progress-bar-wrapper">
+		<div
+			class="sn-progress-bar"
+			[style.width.%]="percentage"
+			[style.background-color]="color"
+			[class.sn-progress-bar-indeterminate]="indeterminate"
+		></div>
+	</div>	
+</div>

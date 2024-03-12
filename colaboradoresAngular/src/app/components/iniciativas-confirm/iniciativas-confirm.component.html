@@ -1,0 +1,51 @@
+<coppel-title [titleComponent]="data.name"></coppel-title>
+<div class="content-delete-component">
+  <mat-dialog-content class="mat-typography">
+    <!-- <h2 mat-dialog-title>{{ data.name }}</h2> -->
+<!--     <div class="demo-button-container">
+      <button mat-raised-button (click)="viewData()" *ngIf="data.typeOperation === 'update' || data.typeOperation === 'delete'" class="demo-button">
+        {{ messageButton }}
+      </button>
+    </div> -->
+    <div class="content-data-deleted" *ngIf="!data.showDetail">
+        <p><strong>Folio*: </strong> {{ data.dataSelected.folio }}  </p>
+        <p><strong>Descripción*: </strong> {{ data.dataSelected.descripcion }}  </p>
+        <p><strong>Nombre de iniciativa*: </strong> {{ data.dataSelected.tituloIniciativa }}  </p>
+        <p><strong>Solicitante*: </strong> {{ data.dataSelected.tituloIniciativa }}  </p>
+        <p><strong>Número de integrantes*: </strong> {{ data.dataSelected.numIntegrantes }}  </p>
+        <p><strong>Fecha de inicio*: </strong> {{ data.dataSelected.fechaInicio }}  </p>
+      <mat-form-field style="width: 100%">
+        <mat-label>Comentarios</mat-label>
+        <textarea
+          matInput
+          placeholder="Comentarios"
+          (keyup)="commentData($event)"
+          [(ngModel)]="commentToAction"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div class="content-data-deleted" *ngIf="data.showDetail && bitacoraData.length !== 0">
+      <div *ngFor="let comentario of bitacoraData">
+        <p><span>Acción: </span> {{ comentario.tipoaccion }} </p>
+        <p><span>Fecha de modificación: </span> {{ comentario.fecha | date }} </p>
+        <p><span>Registro Editado: </span> {{ comentario.referenciavalor }} </p>
+        <p><span>Comentario: </span> {{ comentario.comentario }} </p>
+      </div>
+    </div>
+    <div class="content-data-deleted" *ngIf="data.showDetail && bitacoraData.length === 0" >
+      <h1> No existen registros por mostrar </h1>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" *ngIf="!data.showDetail">
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      (click)="oerationAction(data.typeOperation)"
+      [disabled]="disbleButton"
+    >
+      {{ data.buttonName }}
+    </button>
+  </mat-dialog-actions>
+</div>

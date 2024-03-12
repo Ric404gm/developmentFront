@@ -1,0 +1,62 @@
+.content-register-form-component {
+  width: 80vw;
+  height: 70vh;
+
+  .content-form {
+    width: 95%;
+    margin: auto;
+    height: 77%;
+
+    .form-data-content {
+      width: 100%;
+      padding-top: 1.5%;
+      margin: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+
+      .contnet-input {
+        display: flex;
+        width: auto;
+        min-width: 30%;
+        justify-content: center;
+        align-items: center;
+        height: 7vh;
+        mat-form-field {
+          width: 100%;
+          
+        }
+
+        ::ng-deep button {
+          background-color: #05b431;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: #ffffff !important;
+  border: 1px solid black;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+  color: #000000 !important;
+}
+
+::ng-deep input {
+  color: #000000 !important;
+}
+
+::ng-deep select {
+  color: #000000 !important;
+}
+
+
+::ng-deep .mat-mdc-select-value { 
+  color: #000000 !important;
+}

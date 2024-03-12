@@ -1,0 +1,108 @@
+<div class="content-initiatives">
+  <div class="content-buttons">
+    <coppel-title [titleComponent]="title"></coppel-title>
+  </div>
+
+  <div class="demo-button-container">
+    <button mat-raised-button (click)="openDialog(null)" class="demo-button">
+      Agregar Iniciativa
+    </button>
+  </div>
+
+  <div class="content-filters">
+    <mat-form-field appearance="fill">
+      <mat-label> Tipo Iniciativa </mat-label>
+      <mat-select
+        [(ngModel)]="selectedTipo"
+        (selectionChange)="onChangeTipoProyecto($event)"
+        name="selectCatalogTipoProyecto"
+      >
+        <mat-option
+          *ngFor="let itemCatalogTipoProyecto of catalogoTipoProyecto"
+          [value]="itemCatalogTipoProyecto.id"
+        >
+          {{ itemCatalogTipoProyecto.titulo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Estatus </mat-label>
+      <mat-select
+        [(ngModel)]="selectedEstatus"
+        (selectionChange)="onChangeTipoEstatus($event)"
+        name="selectCatalogTipoEstatus"
+      >
+        <mat-option
+          *ngFor="let itemcatalogTipoEstatus of catalogTipoEstatus"
+          [value]="itemcatalogTipoEstatus.id"
+        >
+          {{ itemcatalogTipoEstatus.titulo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        [(ngModel)]="controlInput"
+        (keyup)="applyFilter($event)"
+        placeholder="busqueda general"
+        #input
+      />
+    </mat-form-field>
+    <div class="contnet-buttons-filters">
+      <button (click)="clearFilters()">Limpiar Filtros</button>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourceInitatives" matSort>
+      <ng-container matColumnDef="folio">
+        <th mat-header-cell *matHeaderCellDef>Folio</th>
+        <td mat-cell *matCellDef="let element">{{ element.folio }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tituloIniciativa">
+        <th mat-header-cell *matHeaderCellDef>Iniciativa</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tituloIniciativa }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="porcentajeAvance">
+        <th mat-header-cell *matHeaderCellDef>Porcentaje de Avance</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="content-porcentaje">
+            <div>{{ element.porcentajeAvance }}%</div>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="element.porcentajeAvance"
+            ></mat-progress-bar>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr
+        mat-row
+        (click)="openDialog(row)"
+        [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No Hay resultados "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 25, 100]"
+      aria-label=" Paginas "
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.content-delete-component {
+  width: max-content;
+  height: 60%;
+  .mat-typography {
+    .content-data-deleted {
+      width: 50rem;
+    }
+  }
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
+}
+
+
+::ng-deep textarea {
+  color: #000000 !important;
+}

@@ -1,0 +1,33 @@
+export class ResultCollaborators {
+    idColaborador?: any;
+    idEquipo?: number;
+    tituloEquipo?: string;
+    idEspecialidad?: number;
+    tituloEspecialidad?: string;
+    nombre?: string;
+    idGerenciaSR?: number;
+    tituloGenrenciaSR?: string;
+    comentarioNegocio?: string;
+    idPuesto?: number;
+    tituloPuesto?: string;
+    fulltime?: number;
+    tipoColaborador?: string;
+    tituloTipoColaborador?: string;
+    idEmpresa?: number;
+    tituloEmpresa?: string;
+    numColaborador?: number;
+    idCentro?: number;
+    tituloCentro?: string;
+    correo?: string;
+    idLider?: number;
+    lider?: string;
+    idUbicacion?: number;
+    tituloUbicacion?: string;
+    idEsquema?: number;
+    tituloEsquema?: string;
+    ipBanco?: string;
+    ipVPN?: string;
+    solicitante?: string;
+    contador?: number;
+    skills?: any;
+  }
